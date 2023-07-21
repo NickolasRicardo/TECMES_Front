@@ -10,6 +10,10 @@ api.interceptors.response.use(
   },
   async (error) => {
     if (error.response) {
+      if (error.response.status === 401 || error.response.status === 403) {
+        localStorage.removeItem("@app:token");
+        localStorage.removeItem("@app:user");
+      }
       return Promise.reject(error.response);
     }
 

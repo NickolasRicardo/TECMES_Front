@@ -27,17 +27,7 @@ export const FormTitle = styled.h3`
   font-weight: 800;
 `;
 
-export const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  border-radius: 8px;
-  background-color: white;
-`;
+export const StyledForm = styled(Form)``;
 
 export const StyledField = styled(Field)`
   align-items: center;
@@ -73,22 +63,20 @@ export const StyledField = styled(Field)`
   }
 `;
 
+export const StyledFieldSelect = styled(Field)``;
+
 export const ButtonCss = styled.button`
-  background: transparent;
+  background: #1677ff;
   border-radius: 3px;
-  border: 2px solid cyan;
-  color: #000;
+  border: 2px solid #1677ff;
+  color: #fff;
   margin: 0.5em 1em;
   padding: 0.25em 1em;
 
   &:hover {
     color: #fff;
 
-    background: linear-gradient(
-      270deg,
-      rgba(0, 212, 255, 1) 0%,
-      rgba(0, 132, 255, 1) 20%,
-      rgba(0, 212, 255, 1) 100%
-    );
+    border: 2px solid rgba(0, 212, 255, 1);
+    background: rgba(0, 212, 255, 1);
   }
 `;

@@ -1,7 +1,7 @@
-import { IOrdemProducao } from "../../../@interfaces/IOrdemProducao";
-import { IPagedModel } from "../../../@interfaces/IPagedModel";
-import api from "../../../http/api";
-import { IRequestByIDModel } from "../../../@interfaces/IRequestByIDModel";
+import { IOrdemProducao } from "../@interfaces/IOrdemProducao";
+import { IPagedModel } from "../@interfaces/IPagedModel";
+import api from "../http/api";
+import { IRequestByIDModel } from "../@interfaces/IRequestByIDModel";
 
 export interface IInterfaceResponseTable {
   error: boolean;

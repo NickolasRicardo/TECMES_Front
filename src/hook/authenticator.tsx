@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useState, useContext } from "react";
 
-import api_auth from "../http/api-auth";
+import api_auth from "../http/api";
 import api from "../http/api";
 
 interface User {

@@ -1,7 +1,7 @@
-import { IOrdemProducao } from "../../../@interfaces/IOrdemProducao";
-import { IPagedModel } from "../../../@interfaces/IPagedModel";
-import api from "../../../http/api";
-import { IRequestByIDModel } from "../../../@interfaces/IRequestByIDModel";
+import { IProduto } from "../@interfaces/IProduto";
+import { IPagedModel } from "../@interfaces/IPagedModel";
+import api from "../http/api";
+import { IRequestByIDModel } from "../@interfaces/IRequestByIDModel";
 
 export interface IInterfaceResponseTable {
   error: boolean;
@@ -10,7 +10,7 @@ export interface IInterfaceResponseTable {
 
 export interface IInterfaceResponseList {
   error: boolean;
-  response?: IOrdemProducao[] | IOrdemProducaoTable[];
+  response?: IProduto[];
 }
 
 export interface IInterfaceResponseFind {
@@ -18,38 +18,14 @@ export interface IInterfaceResponseFind {
   response?: IPagedModel[];
 }
 
-export interface IOrdemProducaoTable {
-  id?: number;
-  numeroOrdemProducao?: string;
-  quantidade?: number;
-  status?: string;
-  cliente?: string;
-  produto?: string;
-}
-
 class Services {
   public async List(): Promise<IInterfaceResponseList> {
     return await api
-      .get(`OrdemProducao`)
+      .get(`Produto`)
       .then((response) => {
-        let ordens = response.data;
-
-        let itemOrdens: IOrdemProducaoTable[] = [];
-
-        ordens.map((item: IOrdemProducao) => {
-          return itemOrdens.push({
-            id: item.id,
-            numeroOrdemProducao: item.numeroOrdemProducao,
-            quantidade: item.quantidade,
-            status: item.status === 0 ? "Em aberto" : "Finalizado",
-            cliente: item.cliente?.nome,
-            produto: item.produto?.nome,
-          });
-        });
-
         return {
           error: false,
-          response: itemOrdens,
+          response: response.data,
         };
       })
       .catch((error) => {
@@ -59,7 +35,7 @@ class Services {
 
   public async ListPaged(): Promise<IInterfaceResponseTable> {
     return await api
-      .get(`OrdemProducao/Paginated`)
+      .get(`Produto/Paginated`)
       .then((response) => {
         return {
           error: false,
@@ -75,7 +51,7 @@ class Services {
     id,
   }: IRequestByIDModel): Promise<IInterfaceResponseFind> {
     return await api
-      .get(`OrdemProducao/${id}`)
+      .get(`Produto/${id}`)
       .then((response) => {
         return {
           error: false,
@@ -87,9 +63,9 @@ class Services {
       });
   }
 
-  public async Create(data: IOrdemProducao) {
+  public async Create(data: IProduto) {
     return await api
-      .post(`OrdemProducao`, data)
+      .post(`Produto`, data)
       .then((response) => {
         return {
           error: false,
@@ -100,9 +76,9 @@ class Services {
       });
   }
 
-  public async Update(data: IOrdemProducao) {
+  public async Update(data: IProduto) {
     return await api
-      .put(`OrdemProducao/${data.id}`, data)
+      .put(`Produto/${data.id}`, data)
       .then((response) => {
         return {
           error: false,
@@ -115,7 +91,7 @@ class Services {
 
   public async Delete({ id }: IRequestByIDModel) {
     return await api
-      .delete(`OrdemProducao/${id}`)
+      .delete(`Produto/${id}`)
       .then((response) => {
         return {
           error: false,
